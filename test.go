@@ -12,9 +12,4 @@ func main() {
 
 	spawn_neuron()
 
-	for a := 0; a <= 110; a++ {
-		if a >= 100 {
-			//fmt.Printf("a is: %d\n", a)
-		}
-	}
 }
