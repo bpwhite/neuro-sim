@@ -7,16 +7,10 @@ import (
 func main() {
 	fmt.Println("Hello, World!")
 
-	fmt.Println("Test: ", linear(5, 3))
+	test1 := linear(.2, 55.0, 3.0)
+	fmt.Printf("Test: %f\n", test1)
 
-	s := neuron{name: "Sam", age: 50}
-	fmt.Println(s.name)
-
-	sp := &s
-	//fmt.Println(sp.age)
-
-	sp.age = 51
-	//fmt.Println(sp.age)
+	spawn_neuron()
 
 	for a := 0; a <= 110; a++ {
 		if a >= 100 {
