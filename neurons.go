@@ -10,18 +10,13 @@ import (
 type neuron struct {
 	name     string
 	age      int
-	pathways []uint8
+	pathways [][][]uint8
 	energy   int
 }
 
 type pathway struct {
 	letter string
 	length int
-}
-
-func linear(m float32, x float32, b float32) float32 {
-	// y = mx + b
-	return m*x + b
 }
 
 func spawn_neuron() {
@@ -38,12 +33,13 @@ func spawn_neuron() {
 	fmt.Println("Age: ", n1.age)
 
 	for i := 0; i < 3; i++ {
-		//n1.pathways[i] := spawn_pathway(12)
-
-		fmt.Println(spawn_pathway(12))
+		//n1.pathways[i] = spawn_pathway(12)
+		n1.pathways = append(n1.pathways, spawn_pathway(12))
+		//fmt.Println(reflect.TypeOf(spawn_pathway(12)))
+		//fmt.Println(spawn_pathway(12))
 	}
 
-	//fmt.Println("Pathway1: ", n1.pathways[0])
+	fmt.Println("Pathway1: ", n1.pathways[0])
 
 }
 
@@ -57,7 +53,7 @@ func spawn_pathway(length int) (pathway_sl [][]uint8) {
 		// user, but log the details internally.
 		fmt.Println("Something terrible has happened.")
 	}
-	//fmt.Println(reflect.TypeOf(ran_string[1]), " : ", ran_string[1])
+
 	fmt.Println("Generated DNA string of length: ", length)
 
 	// loop through the dna string and perform operations

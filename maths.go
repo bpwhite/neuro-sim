@@ -6,6 +6,11 @@ import (
 	"encoding/base64"
 )
 
+func linear(m float32, x float32, b float32) float32 {
+	// y = mx + b
+	return m*x + b
+}
+
 // GenerateRandomBytes returns securely generated random bytes.
 // It will return an error if the system's secure random
 // number generator fails to function correctly, in which
