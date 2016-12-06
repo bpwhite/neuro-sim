@@ -12,6 +12,16 @@ func linear(m float32, x float32, b float32) float32 {
 	return m*x + b
 }
 
+func squared(m float32, x float32, b float32) float32 {
+	// y = mx + b
+	return m*x*x + b
+}
+
+func cubed(m float32, x float32, b float32) float32 {
+	// y = mx + b
+	return m*x*x*x + b
+}
+
 // Crypto rand int number
 func gen_cryp_num(input int64) (n int64) {
 	nBig, err := rand.Int(rand.Reader, big.NewInt(input))

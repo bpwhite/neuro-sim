@@ -89,7 +89,11 @@ func spawn_language(length int, langlen int64) (language [][]uint8) {
 	// loop through each letter of the language and assign
 	// a mathematic function class
 	for i := 0; i < length; i++ {
-		fmt.Println("Selected: ", gen_cryp_num(langlen))
+		fmt.Printf("Letter: %c "+
+			"\t Function: %d"+
+			"\t Sign: %d"+
+			"\n",
+			ran_string[i], gen_cryp_num(langlen), gen_cryp_num(2))
 	}
 	return
 }
