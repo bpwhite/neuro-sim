@@ -3,14 +3,14 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"reflect"
+	//"os"
+	//"reflect"
 )
 
 type neuron struct {
 	name     string
 	age      int
-	pathways []pathway
+	pathways []uint8
 	energy   int
 }
 
@@ -33,42 +33,44 @@ func spawn_neuron() {
 	}
 	n1 := neuron{name: ran_string, age: 0}
 
-	for i := 0; i < 3; i++ {
-		//n1.pathways[i] := spawn_pathway()
-		spawn_pathway(12)
-	}
-
+	fmt.Println("Neuron: ", 1)
 	fmt.Println("Name: ", n1.name)
 	fmt.Println("Age: ", n1.age)
+
+	for i := 0; i < 3; i++ {
+		//n1.pathways[i] := spawn_pathway(12)
+
+		fmt.Println(spawn_pathway(12))
+	}
+
 	//fmt.Println("Pathway1: ", n1.pathways[0])
 
 }
 
-func spawn_pathway(length int) {
+func spawn_pathway(length int) (pathway_sl [][]uint8) {
+	// create 2d slice to hold pathway info
+
+	// generate random string, this is pathway dna
 	ran_string, err := GenerateRandomString(length)
 	if err != nil {
 		// Serve an appropriately vague error to the
 		// user, but log the details internally.
 		fmt.Println("Something terrible has happened.")
 	}
-	fmt.Println(reflect.TypeOf(ran_string[1]), " : ", ran_string[1])
-	fmt.Println("Length: ", length)
+	//fmt.Println(reflect.TypeOf(ran_string[1]), " : ", ran_string[1])
+	fmt.Println("Generated DNA string of length: ", length)
 
-	pathway_sl := [][]uint8{}
-
+	// loop through the dna string and perform operations
 	for i := 0; i < length; i++ {
+		// print status of string
+		//fmt.Println("[", i, "]", ran_string[i])
+		// create array to hold row
 		row := []uint8{ran_string[i], 1}
+		// add row to slice
 		pathway_sl = append(pathway_sl, row)
-		//pathway_arr[i][0] = ran_string[i]
-		//pathway_arr[i][1] = 1
-		fmt.Println("[", i, "]", ran_string[i])
-	}
-	fmt.Println(pathway_sl[1][0])
-	// do something with c
-	//fmt.Println(c)
-	//pathway_arr[_][1] := c, 1
-	//}
-	os.Exit(3)
 
-	//retun ran_string
+	}
+	//fmt.Println(reflect.TypeOf(pathway_sl[1][0]))
+
+	return
 }
