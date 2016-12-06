@@ -4,11 +4,23 @@ package main
 import (
 	"crypto/rand"
 	"encoding/base64"
+	"math/big"
 )
 
 func linear(m float32, x float32, b float32) float32 {
 	// y = mx + b
 	return m*x + b
+}
+
+// Crypto rand int number
+func gen_cryp_num(input int64) (n int64) {
+	nBig, err := rand.Int(rand.Reader, big.NewInt(input))
+	if err != nil {
+		panic(err)
+	}
+	n = nBig.Int64()
+	//fmt.Printf("Here is a random %T in [0,27) : %d\n", n, n)
+	return
 }
 
 // GenerateRandomBytes returns securely generated random bytes.
@@ -35,10 +47,3 @@ func GenerateRandomString(s int) (string, error) {
 	b, err := GenerateRandomBytes(s)
 	return base64.URLEncoding.EncodeToString(b), err
 }
-
-// Example: this will give us a 44 byte, base64 encoded output
-// token, err := GenerateRandomString(32)
-//if err != nil {
-// Serve an appropriately vague error to the
-// user, but log the details internally.
-//}

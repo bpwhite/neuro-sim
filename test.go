@@ -9,7 +9,7 @@ func main() {
 
 	test1 := linear(.2, 55.0, 3.0)
 	fmt.Printf("Test: %f\n", test1)
-
+	spawn_language(10, 26)
 	spawn_neuron()
 
 }

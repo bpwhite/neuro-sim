@@ -5,12 +5,14 @@ import (
 	"fmt"
 	//"os"
 	//"reflect"
+	//"crypto/rand"
+	//"math/big"
 )
 
 type neuron struct {
 	name     string
 	age      int
-	pathways [][][]uint8
+	pathways [][][]uint8 // i dont know why this works but it does.
 	energy   int
 }
 
@@ -68,5 +70,26 @@ func spawn_pathway(length int) (pathway_sl [][]uint8) {
 	}
 	//fmt.Println(reflect.TypeOf(pathway_sl[1][0]))
 
+	return
+}
+
+func spawn_language(length int, langlen int64) (language [][]uint8) {
+	// create 2d slice to hold language info
+
+	// generate random string, this is pathway dna
+	ran_string, err := GenerateRandomString(length)
+	if err != nil {
+		// Serve an appropriately vague error to the
+		// user, but log the details internally.
+		fmt.Println("Something terrible has happened.")
+	}
+
+	fmt.Println("Generated language of length: ", length)
+	fmt.Println("Language string: ", ran_string)
+	// loop through each letter of the language and assign
+	// a mathematic function class
+	for i := 0; i < length; i++ {
+		fmt.Println("Selected: ", gen_cryp_num(langlen))
+	}
 	return
 }
