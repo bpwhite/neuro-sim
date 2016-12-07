@@ -21,6 +21,60 @@ type pathway struct {
 	length int
 }
 
+type alphabet struct {
+	Name       int
+	letter_box letter
+}
+
+type Language struct {
+	Items []alphabet
+}
+
+type letter struct {
+	letter_str byte
+	function   int64
+	sign       int64
+}
+
+func (box *Language) AddItem(item alphabet) []alphabet {
+	box.Items = append(box.Items, item)
+	return box.Items
+}
+
+func spawn_language(length int, langlen int64) (language [][]uint8) {
+	// create 2d slice to hold language info
+
+	// generate random string, this is pathway dna
+	ran_string, err := GenerateRandomString(length)
+	if err != nil {
+		// Serve an appropriately vague error to the
+		// user, but log the details internally.
+		fmt.Println("Something terrible has happened.")
+	}
+
+	// loop through each letter of the language and assign
+	// a mathematic function class
+	r := ran_string
+	items := []alphabet{}
+	box := Language{items}
+
+	for i := 0; i < length; i++ {
+		fr := gen_cryp_num(langlen)
+		sr := gen_cryp_num(2)
+
+		// 	letter1 := letter{letter_str: 2, function: 1, sign: 1}
+		l1 := letter{letter_str: r[i], function: fr, sign: sr}
+		item1 := alphabet{Name: i, letter_box: l1}
+		box.AddItem(item1)
+
+		//fmt.Printf("%+v\n", l1)
+	}
+	fmt.Println("Generated language of length: ", length)
+	fmt.Println("Language string: ", ran_string)
+	fmt.Println(box)
+	return
+}
+
 func spawn_neuron() {
 	ran_string, err := GenerateRandomString(12)
 	if err != nil {
@@ -56,7 +110,7 @@ func spawn_pathway(length int) (pathway_sl [][]uint8) {
 		fmt.Println("Something terrible has happened.")
 	}
 
-	fmt.Println("Generated DNA string of length: ", length)
+	fmt.Println("Generated pathway with DNA string of length: ", length)
 
 	// loop through the dna string and perform operations
 	for i := 0; i < length; i++ {
@@ -70,30 +124,5 @@ func spawn_pathway(length int) (pathway_sl [][]uint8) {
 	}
 	//fmt.Println(reflect.TypeOf(pathway_sl[1][0]))
 
-	return
-}
-
-func spawn_language(length int, langlen int64) (language [][]uint8) {
-	// create 2d slice to hold language info
-
-	// generate random string, this is pathway dna
-	ran_string, err := GenerateRandomString(length)
-	if err != nil {
-		// Serve an appropriately vague error to the
-		// user, but log the details internally.
-		fmt.Println("Something terrible has happened.")
-	}
-
-	fmt.Println("Generated language of length: ", length)
-	fmt.Println("Language string: ", ran_string)
-	// loop through each letter of the language and assign
-	// a mathematic function class
-	for i := 0; i < length; i++ {
-		fmt.Printf("Letter: %c "+
-			"\t Function: %d"+
-			"\t Sign: %d"+
-			"\n",
-			ran_string[i], gen_cryp_num(langlen), gen_cryp_num(2))
-	}
 	return
 }
