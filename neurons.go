@@ -41,7 +41,7 @@ func (box *Language) AddItem(item alphabet) []alphabet {
 	return box.Items
 }
 
-func spawn_language(length int, langlen int64) (language [][]uint8) {
+func spawn_language(length int, langlen int64) (box Language) {
 	// create 2d slice to hold language info
 
 	// generate random string, this is pathway dna
@@ -56,7 +56,7 @@ func spawn_language(length int, langlen int64) (language [][]uint8) {
 	// a mathematic function class
 	r := ran_string
 	items := []alphabet{}
-	box := Language{items}
+	box = Language{items}
 
 	for i := 0; i < length; i++ {
 		fr := gen_cryp_num(langlen)
@@ -71,7 +71,7 @@ func spawn_language(length int, langlen int64) (language [][]uint8) {
 	}
 	fmt.Println("Generated language of length: ", length)
 	fmt.Println("Language string: ", ran_string)
-	fmt.Println(box)
+
 	return
 }
 
@@ -89,10 +89,7 @@ func spawn_neuron() {
 	fmt.Println("Age: ", n1.age)
 
 	for i := 0; i < 3; i++ {
-		//n1.pathways[i] = spawn_pathway(12)
 		n1.pathways = append(n1.pathways, spawn_pathway(12))
-		//fmt.Println(reflect.TypeOf(spawn_pathway(12)))
-		//fmt.Println(spawn_pathway(12))
 	}
 
 	fmt.Println("Pathway1: ", n1.pathways[0])
