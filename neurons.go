@@ -45,7 +45,7 @@ func spawn_language(length int, langlen int64) (box Language) {
 	// create 2d slice to hold language info
 
 	// generate random string, this is pathway dna
-	ran_string, err := GenerateRandomString(length)
+	ran_string, err := GenerateRandomString(32)
 	if err != nil {
 		// Serve an appropriately vague error to the
 		// user, but log the details internally.
@@ -67,7 +67,7 @@ func spawn_language(length int, langlen int64) (box Language) {
 		item1 := alphabet{Name: i, letter_box: l1}
 		box.AddItem(item1)
 
-		//fmt.Printf("%+v\n", l1)
+		//fmt.Printf("%d %c %d %d\n", i, r[i], fr, sr)
 	}
 	fmt.Println("Generated language of length: ", length)
 	fmt.Println("Language string: ", ran_string)
@@ -75,7 +75,7 @@ func spawn_language(length int, langlen int64) (box Language) {
 	return
 }
 
-func spawn_neuron() {
+func spawn_neuron(in_lang Language) {
 	ran_string, err := GenerateRandomString(12)
 	if err != nil {
 		// Serve an appropriately vague error to the
@@ -88,35 +88,31 @@ func spawn_neuron() {
 	fmt.Println("Name: ", n1.name)
 	fmt.Println("Age: ", n1.age)
 
+	fmt.Println("Acquiring language...")
+	lang_len := len(in_lang.Items)
+	fmt.Println("Acquired language of length: ", lang_len)
+
+	fmt.Printf("%+v\n", in_lang.Items[0].letter_box.letter_str)
 	for i := 0; i < 3; i++ {
 		n1.pathways = append(n1.pathways, spawn_pathway(12))
 	}
 
-	fmt.Println("Pathway1: ", n1.pathways[0])
+	//fmt.Println("Pathway1: ", n1.pathways[0])
 
 }
 
 func spawn_pathway(length int) (pathway_sl [][]uint8) {
-	// create 2d slice to hold pathway info
 
-	// generate random string, this is pathway dna
-	ran_string, err := GenerateRandomString(length)
-	if err != nil {
-		// Serve an appropriately vague error to the
-		// user, but log the details internally.
-		fmt.Println("Something terrible has happened.")
-	}
-
-	fmt.Println("Generated pathway with DNA string of length: ", length)
+	//fmt.Println("Generated pathway with DNA string of length: ", length)
 
 	// loop through the dna string and perform operations
 	for i := 0; i < length; i++ {
 		// print status of string
 		//fmt.Println("[", i, "]", ran_string[i])
 		// create array to hold row
-		row := []uint8{ran_string[i], 1}
+		//row := []uint8{ran_string[i], 1}
 		// add row to slice
-		pathway_sl = append(pathway_sl, row)
+		//pathway_sl = append(pathway_sl, row)
 
 	}
 	//fmt.Println(reflect.TypeOf(pathway_sl[1][0]))
