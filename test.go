@@ -17,7 +17,7 @@ func main() {
 
 	for i := 0; i < 25; i++ {
 
-		ran := gen_cryp_num(5)
+		ran := gen_cryp_num(7)
 		eval := 0.0
 
 		switch true {
@@ -36,6 +36,12 @@ func main() {
 		case ran == 4:
 			eval = 1 / num
 			fmt.Printf(" 1/x=%f\t", eval)
+		case ran == 5:
+			eval = math.Log(num)
+			fmt.Printf(" log(x)=%f\t ", eval)
+		case ran == 6:
+			eval = math.Log10(num)
+			fmt.Printf(" log10(x)=%f\t ", eval)
 		}
 
 		num = eval + num
