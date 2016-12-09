@@ -20,6 +20,15 @@ func main() {
 		ran := gen_cryp_num(7)
 		eval := 0.0
 
+		rsign := gen_cryp_num(2)
+		sign := 1.0
+		//fmt.Println(rsign)
+		if rsign == 0 {
+			sign = 1.0
+		} else if rsign == 1 {
+			sign = -1.0
+		}
+
 		switch true {
 		case ran == 0:
 			eval = eval + num
@@ -42,9 +51,13 @@ func main() {
 		case ran == 6:
 			eval = math.Log10(num)
 			fmt.Printf(" log10(x)=%f\t ", eval)
+			//case ran == 7:
+			//	eval = math.Exp(num)
+			//	fmt.Printf("exp(x)=%f\t ", eval)
 		}
 
-		num = eval + num
+		num = eval*sign + num
+		//num = num * sign
 		fmt.Printf(" num: %f\n", num)
 	}
 	fmt.Println("num: ", num)
